@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forest Park 吉美富徠｜廣告成效簡報 2026/06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1e1a; --ink-medium: #3a3d3a; --ink-light: #6a6d6a;
+  --paper: #ffffff; --paper-soft: #faf9f5; --paper-warm: #f5f2eb;
+  --hairline: #d6d3cd; --hairline-soft: #ece9e1;
+  --forest: #2d5828; --forest-light: #4a7a3e; --forest-soft: rgba(45, 88, 40, 0.06);
+  --gold: #b8963e; --gold-light: #d4c090; --gold-soft: #efe5cd;
+  --edit-border: rgba(45, 88, 40, 0.22); --edit-active: #2d5828;
+  --positive: #2d5828; --negative: #a13d35;
+  --serif: 'Noto Serif TC', 'Songti TC', serif;
+  --sans: 'Noto Sans TC', -apple-system, sans-serif;
+  --en: 'Cormorant Garamond', serif;
+  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; font-weight: 500; line-height: 1.85; letter-spacing: 0.3px; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 56px; }
+.section { padding: 88px 0; border-bottom: 1px solid var(--hairline-soft); }
+.section:last-of-type { border-bottom: none; }
+.section-header { margin-bottom: 40px; }
+.section-num { font-family: var(--en); font-size: 15px; letter-spacing: 4px; color: var(--gold); font-weight: 500; font-style: italic; }
+.section-en { font-family: var(--en); font-size: 14px; letter-spacing: 6px; text-transform: uppercase; color: var(--forest); margin-top: 4px; font-weight: 500; }
+.section-title { font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: 4px; color: var(--ink); margin-top: 16px; line-height: 1.3; }
+.section-lede { font-size: 16px; color: var(--ink); font-weight: 500; letter-spacing: 0.5px; line-height: 1.9; margin-top: 20px; max-width: 760px; }
+.gold-line { width: 48px; height: 1px; background: var(--gold); margin: 24px 0; }
+.subhead { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: 2px; color: var(--ink); margin: 40px 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--hairline); }
+
+.editable { display: block; border: 1px dashed var(--edit-border); border-radius: 2px; padding: 16px 20px; margin: 16px 0; min-height: 56px; outline: none; transition: border-color 0.2s, background 0.2s; font-size: 15px; line-height: 1.85; color: var(--ink); font-weight: 500; }
+.editable:hover { border-color: var(--forest); background: var(--forest-soft); }
+.editable:focus { border-color: var(--edit-active); border-style: solid; background: #fff; }
+.editable-inline { display: inline-block; border-bottom: 1px dashed var(--edit-border); padding: 0 4px; outline: none; min-width: 100px; transition: border-color 0.2s; }
+.editable-inline:hover, .editable-inline:focus { border-color: var(--edit-active); }
+
+.image-slot { width: 80px; height: 80px; border: 1px dashed var(--edit-border); border-radius: 2px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; background: var(--paper-soft); cursor: pointer; transition: all 0.2s; overflow: hidden; }
+.image-slot::before { content: '＋'; font-size: 24px; color: var(--ink-light); font-weight: 300; transition: color 0.2s; }
+.image-slot.has-image::before { display: none; }
+.image-slot:hover { border-color: var(--forest); background: var(--forest-soft); }
+.image-slot:hover::before { color: var(--forest); }
+.image-slot img { width: 100%; height: 100%; object-fit: cover; }
+.image-slot.dragover { border-color: var(--forest); border-style: solid; background: var(--forest-soft); }
+
+.toolbar { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--hairline); padding: 14px 0; }
+.toolbar-inner { max-width: 1080px; margin: 0 auto; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; }
+.toolbar-brand { font-family: var(--en); font-size: 14px; letter-spacing: 5px; text-transform: uppercase; color: var(--forest); font-weight: 600; }
+.toolbar-brand .tb-sep { color: var(--gold); margin: 0 10px; }
+.toolbar-brand .tb-zh { font-family: var(--serif); font-size: 15px; letter-spacing: 3px; color: var(--ink); font-weight: 600; }
+.toolbar-actions { display: flex; gap: 8px; }
+.tb-btn { font-family: var(--sans); font-size: 14px; letter-spacing: 2px; font-weight: 500; padding: 9px 18px; border: 1px solid var(--hairline); background: var(--paper); color: var(--ink); cursor: pointer; transition: all 0.2s; border-radius: 2px; }
+.tb-btn:hover { border-color: var(--forest); color: var(--forest); }
+.tb-btn.primary { background: var(--forest); border-color: var(--forest); color: #fff; }
+.tb-btn.primary:hover { background: var(--forest-light); border-color: var(--forest-light); color: #fff; }
+.edit-notice { display: none; background: var(--gold-soft); border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); padding: 12px 0; text-align: center; font-size: 14px; color: var(--ink); font-weight: 500; letter-spacing: 1.5px; }
+body.edit-mode .edit-notice { display: block; }
+
+.cover { padding: 128px 0 96px; background: var(--paper-soft); border-bottom: 1px solid var(--hairline); }
+.cover-mark { font-family: var(--en); font-size: 14px; letter-spacing: 6px; text-transform: uppercase; color: var(--forest); font-weight: 600; }
+.cover-mark .cm-zh { font-family: var(--serif); font-size: 15px; letter-spacing: 4px; color: var(--ink); margin-left: 12px; font-weight: 600; }
+.cover-title { font-family: var(--serif); font-size: 56px; font-weight: 600; letter-spacing: 12px; color: var(--ink); margin: 32px 0 8px; line-height: 1.2; }
+.cover-subtitle { font-family: var(--en); font-style: italic; font-size: 19px; letter-spacing: 4px; color: var(--ink-medium); margin-bottom: 32px; font-weight: 500; }
+.cover-line { width: 64px; height: 1px; background: var(--gold); margin: 32px 0; }
+.cover-period { font-family: var(--mono); font-size: 20px; letter-spacing: 3px; color: var(--ink); margin-bottom: 56px; font-weight: 500; }
+.cover-meta { max-width: 540px; }
+.meta-row { display: grid; grid-template-columns: 130px 1fr; padding: 14px 0; border-bottom: 1px solid var(--hairline-soft); font-size: 15px; align-items: center; }
+.meta-label { font-family: var(--en); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.meta-value { font-family: var(--serif); font-size: 16px; color: var(--ink); letter-spacing: 1.5px; font-weight: 500; }
+
+.exec-narrative { background: var(--paper-soft); padding: 28px 32px; border-left: 3px solid var(--gold); font-family: var(--serif); font-size: 16px; font-weight: 500; line-height: 2; letter-spacing: 1px; color: var(--ink); margin-bottom: 40px; }
+.exec-narrative p + p { margin-top: 14px; }
+
+.hero-kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+.hero-kpi-card { background: var(--paper); padding: 28px 22px; }
+.hk-label { font-family: var(--en); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.hk-label-zh { font-size: 14px; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 18px; margin-top: 2px; font-weight: 500; }
+.hk-value { font-family: var(--serif); font-size: 38px; font-weight: 600; color: var(--ink); letter-spacing: 1px; line-height: 1.2; }
+.hk-unit { font-family: var(--sans); font-size: 14px; color: var(--ink-medium); margin-left: 4px; font-weight: 500; }
+.hk-delta { margin-top: 12px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.5px; color: var(--ink); font-weight: 500; }
+.hk-delta.up   { color: var(--positive); }
+.hk-delta.down { color: var(--negative); }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0; }
+.data-table th { font-family: var(--sans); font-weight: 600; font-size: 14px; letter-spacing: 1px; color: var(--ink); text-align: left; padding: 14px 16px; border-bottom: 2px solid var(--ink); background: var(--paper-soft); }
+.data-table td { padding: 14px 16px; border-bottom: 1px solid var(--hairline-soft); color: var(--ink); font-weight: 500; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .num, .data-table th.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; font-weight: 500; }
+.data-table tr.total td { font-weight: 600; border-top: 1px solid var(--ink); border-bottom: none; background: var(--paper-soft); }
+.data-table .row-label { font-family: var(--serif); letter-spacing: 1px; font-weight: 600; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+.kpi-cell { background: var(--paper); padding: 22px 20px; }
+.kpi-cell .label { font-family: var(--en); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.kpi-cell .label-zh { font-size: 14px; letter-spacing: 1px; color: var(--ink); margin-bottom: 14px; margin-top: 2px; font-weight: 500; }
+.kpi-cell .value { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--ink); letter-spacing: 0.5px; line-height: 1.2; }
+.kpi-cell .value-mono { font-family: var(--mono); font-weight: 500; }
+.kpi-cell .unit { font-family: var(--sans); font-size: 13px; color: var(--ink-medium); margin-left: 4px; font-weight: 500; }
+.kpi-cell .delta-row { margin-top: 12px; display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.5px; }
+.kpi-cell .delta.up   { color: var(--positive); }
+.kpi-cell .delta.down { color: var(--negative); }
+
+.mom-chart { margin: 8px 0; }
+.mom-row { display: grid; grid-template-columns: 160px 1fr 100px; align-items: center; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--hairline-soft); }
+.mom-row:last-child { border-bottom: none; }
+.mom-label { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: 1px; }
+.mom-bars { display: flex; flex-direction: column; gap: 8px; }
+.mom-bar-row { display: grid; grid-template-columns: 32px 1fr 130px; align-items: center; gap: 12px; }
+.mom-side { font-family: var(--en); font-size: 13px; color: var(--ink-medium); font-weight: 600; letter-spacing: 1px; }
+.mom-track { background: var(--hairline-soft); height: 16px; border-radius: 1px; overflow: hidden; position: relative; min-width: 360px; }
+.mom-fill { height: 100%; background: #d6d3cd; transition: width 0.4s ease; }
+.mom-fill.prev { background: #c4c0b3; }
+.mom-val { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.mom-delta { font-family: var(--mono); font-size: 14px; font-weight: 600; text-align: right; letter-spacing: 0.5px; }
+.mom-delta.positive { color: var(--positive); }
+.mom-delta.negative { color: var(--negative); }
+.mom-delta.neutral  { color: var(--ink-medium); }
+
+.donut-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: center; margin: 16px 0 32px; }
+.donut-legend { display: flex; flex-direction: column; gap: 16px; }
+.donut-item { display: grid; grid-template-columns: 16px 1fr auto; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--hairline-soft); }
+.donut-item:last-child { border-bottom: none; }
+.donut-dot { width: 14px; height: 14px; border-radius: 2px; }
+.donut-name { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: 1px; }
+.donut-stats { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; text-align: right; }
+.donut-stats .pct { font-size: 16px; font-weight: 600; margin-right: 8px; }
+
+.hbar-chart { margin: 16px 0; }
+.hbar-row { display: grid; grid-template-columns: 160px 420px 1fr; align-items: center; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--hairline-soft); }
+.hbar-row:last-child { border-bottom: none; }
+.hbar-label { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: 1px; }
+.hbar-track { height: 20px; background: var(--hairline-soft); border-radius: 1px; overflow: hidden; }
+.hbar-fill { height: 100%; background: var(--forest); transition: width 0.4s ease; }
+.hbar-value { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; }
+
+.dual-chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 24px; }
+.dual-chart-col h4 { font-family: var(--en); font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--forest); font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--hairline); }
+.dual-chart-col .hbar-row { grid-template-columns: 130px 1fr 80px; gap: 14px; }
+.dual-chart-col .hbar-track { width: auto !important; }
+
+.top-ads { display: flex; flex-direction: column; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); margin-top: 16px; }
+.top-ad-row { background: var(--paper); padding: 18px 22px; display: grid; grid-template-columns: 36px 88px 1fr auto; align-items: center; gap: 20px; }
+.top-ad-row .rank { font-family: var(--en); font-size: 26px; font-style: italic; color: var(--gold); font-weight: 600; }
+.top-ad-row .ad-meta { font-size: 14px; color: var(--ink); font-weight: 500; letter-spacing: 0.5px; }
+.top-ad-row .ad-name { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: 1px; }
+.top-ad-row .ad-stats { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; text-align: right; white-space: nowrap; }
+.top-ad-row .ad-stats strong { color: var(--forest); font-weight: 700; }
+
+.footer { padding: 56px 0 40px; background: var(--ink); color: rgba(232, 228, 220, 0.85); text-align: center; }
+.footer .ft-mark { font-family: var(--en); font-size: 14px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
+.footer .ft-name { font-family: var(--serif); font-size: 17px; letter-spacing: 4px; color: #fff; margin-bottom: 20px; font-weight: 600; }
+.footer .ft-legal { font-size: 13px; letter-spacing: 1px; line-height: 2; font-weight: 500; }
+
+@media print {
+  .toolbar, .edit-notice { display: none !important; }
+  body { font-size: 13px; }
+  .section { padding: 40px 0; page-break-inside: avoid; }
+  .cover { padding: 56px 0 40px; page-break-after: always; }
+  .editable { border: 1px solid var(--hairline) !important; background: #fff !important; }
+  .image-slot { break-inside: avoid; }
+  .data-table, .kpi-grid, .hero-kpi, .mom-row, .donut-wrap, .hbar-row { page-break-inside: avoid; }
+  .container { max-width: none; padding: 0 24px; }
+}
+
+@media (max-width: 900px) {
+  .container, .toolbar-inner { padding: 0 24px; }
+  .hero-kpi, .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .cover-title { font-size: 36px; letter-spacing: 6px; }
+  .section-title { font-size: 24px; }
+  .top-ad-row { grid-template-columns: 30px 80px 1fr; gap: 14px; }
+  .top-ad-row .ad-stats { grid-column: 2 / -1; text-align: left; }
+  .mom-row { grid-template-columns: 100px 1fr; gap: 12px; }
+  .mom-delta { grid-column: 2; text-align: left; }
+  .mom-track { min-width: 0; }
+  .donut-wrap { grid-template-columns: 1fr; gap: 24px; justify-items: center; }
+  .hbar-row { grid-template-columns: 1fr; gap: 6px; }
+  .dual-chart-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="toolbar-brand">Forest Park <span class="tb-sep">·</span> <span class="tb-zh">吉美富徠 廣告月報</span></div>
+    <div class="toolbar-actions">
+      <button class="tb-btn" id="editBtn" onclick="toggleEdit()">開始編輯</button>
+      <button class="tb-btn" onclick="downloadHTML()">下載修改版</button>
+      <button class="tb-btn primary" onclick="window.print()">列印 / PDF</button>
+    </div>
+  </div>
+</div>
+
+<div class="edit-notice">編輯模式已開啟　·　點擊虛線框可直接輸入文字　·　點擊圖位可上傳代表圖</div>
+
+<section class="cover">
+  <div class="container">
+    <div class="cover-mark">FOREST PARK <span class="cm-zh">吉美富徠</span></div>
+    <h1 class="cover-title">廣告成效簡報</h1>
+    <div class="cover-subtitle">Monthly Advertising Performance Report</div>
+    <div class="cover-line"></div>
+    <div class="cover-period">2026 / 06 / 01　—　2026 / 06 / 30</div>
+  </div>
+</section>
+
+<!-- § 02 -->
+<section class="section" id="s02">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 02</div>
+      <div class="section-en">Executive Summary</div>
+      <h2 class="section-title">執行摘要</h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="exec-narrative editable" contenteditable="false">
+      <p>2026 年 6 月，Forest Park 吉美富徠 Meta 廣告依 6/8 提出的預算集中策略，將 4-6 月累積餘額全部投入 Meta，投放金額 NT$173,772，達成率 97.3%，獲取潛在名單 41 張，為近三個月最高紀錄。</p>
+      <p>本月新增品牌觸及測試擴大投放，觸及達 95,723 人，佔本月總觸及約 75%；受眾以精品豪車、高所得族群為主，「20251030 圖片」素材再度成為名單貢獻主力，單支貢獻 13 張名單。</p>
+    </div>
+
+    <div class="hero-kpi">
+      <div class="hero-kpi-card">
+        <div class="hk-label">Budget Spent</div>
+        <div class="hk-label-zh">本月廣告花費</div>
+        <div class="hk-value">173,772<span class="hk-unit">NTD</span></div>
+        <div class="hk-delta">達成率 97.3%</div>
+      </div>
+      <div class="hero-kpi-card">
+        <div class="hk-label">Leads</div>
+        <div class="hk-label-zh">名單獲取</div>
+        <div class="hk-value">41</div>
+        <div class="hk-delta up">vs 上月　+24　(+141.2%)</div>
+      </div>
+      <div class="hero-kpi-card">
+        <div class="hk-label">CPL</div>
+        <div class="hk-label-zh">名單成本</div>
+        <div class="hk-value">4,238<span class="hk-unit">NTD</span></div>
+        <div class="hk-delta down">vs 上月　+731　(+20.8%)</div>
+      </div>
+      <div class="hero-kpi-card">
+        <div class="hk-label">Reach</div>
+        <div class="hk-label-zh">觸及人數</div>
+        <div class="hk-value">128,025</div>
+        <div class="hk-delta up">vs 上月　+94,429　(+281.1%)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 03 -->
+<section class="section" id="s03">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 03</div>
+      <div class="section-en">Budget Execution</div>
+      <h2 class="section-title">本月預算執行</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">依 6/8 提案，本月將 4-6 月累積 Meta 餘額 NT$18,504 與 Google 累積預算 NT$100,000 全部投入 Meta，總投放金額 NT$173,772。</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>平台</th>
+          <th>期間</th>
+          <th class="num">規劃預算</th>
+          <th class="num">實際花費</th>
+          <th class="num">達成率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">Meta</td><td>2026 / 06　本月規劃</td><td class="num">60,000</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="row-label">Meta</td><td>4-5 月累積餘額</td><td class="num">18,504</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="row-label">Google</td><td>4-6 月累積轉入</td><td class="num">100,000</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr class="total"><td class="row-label">Meta 合計投放</td><td>2026 / 06</td><td class="num">178,504</td><td class="num">173,772</td><td class="num">97.3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- § 04 -->
+<section class="section" id="s04">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 04</div>
+      <div class="section-en">Core Performance Metrics</div>
+      <h2 class="section-title">核心成效指標</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">本月 8 項主要指標與 5 月對照。本月因啟動品牌觸及擴大投放，觸及、曝光量顯著提升，同時 CTR 因品牌觸及不追求點擊而下降，屬結構性變化。</p>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-cell">
+        <div class="label">Reach</div>
+        <div class="label-zh">觸及人數</div>
+        <div class="value value-mono">128,025</div>
+        <div class="delta-row"><span class="delta up">▲ +281.1%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="36.7" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Impressions</div>
+        <div class="label-zh">曝光次數</div>
+        <div class="value value-mono">277,533</div>
+        <div class="delta-row"><span class="delta up">▲ +295.0%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="35.5" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Engagements</div>
+        <div class="label-zh">互動次數</div>
+        <div class="value value-mono">3,451</div>
+        <div class="delta-row"><span class="delta up">▲ +161.0%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="53.6" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Clicks</div>
+        <div class="label-zh">點擊次數</div>
+        <div class="value value-mono">2,600</div>
+        <div class="delta-row"><span class="delta up">▲ +131.9%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="60.4" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">CTR</div>
+        <div class="label-zh">點擊率</div>
+        <div class="value value-mono">0.94<span class="unit">%</span></div>
+        <div class="delta-row"><span class="delta down">▼ −0.66pp</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="140.0" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="82.2" height="6" fill="#a13d35"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Leads</div>
+        <div class="label-zh">名單獲取</div>
+        <div class="value value-mono">41</div>
+        <div class="delta-row"><span class="delta up">▲ +141.2%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="58.0" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">CPL</div>
+        <div class="label-zh">名單成本</div>
+        <div class="value value-mono">4,238</div>
+        <div class="delta-row"><span class="delta down">▲ +20.8%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="115.9" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">CPE</div>
+        <div class="label-zh">單次互動成本</div>
+        <div class="value value-mono">50<span class="unit">NTD</span></div>
+        <div class="delta-row"><span class="delta down">▲ +11.1%</span></div>
+        <svg width="140" height="20" viewBox="0 0 140 20" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-top:14px">
+  <rect x="0" y="2" width="126.0" height="6" fill="#d6d3cd"/>
+  <rect x="0" y="11" width="140.0" height="6" fill="#2d5828"/>
+</svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 05 -->
+<section class="section" id="s05">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 05</div>
+      <div class="section-en">Month-over-Month Comparison</div>
+      <h2 class="section-title">月對月比較</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">為消除 5 月 31 天 / 6 月 30 天的天數差異，以及排除品牌觸及影響，以下統一採「潛在名單型廣告」日均比較。</p>
+    </div>
+
+    <div class="mom-chart">
+<div class="mom-row">
+  <div class="mom-label">觸及人數（日均）</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:198.2px"></div></div>
+      <span class="mom-val">593</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr positive" style="width:360.0px;background:#2d5828"></div></div>
+      <span class="mom-val">1,077</span>
+    </div>
+  </div>
+  <div class="mom-delta positive">▲ 81.6%</div>
+</div><div class="mom-row">
+  <div class="mom-label">曝光次數（日均）</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:146.4px"></div></div>
+      <span class="mom-val">1,774</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr positive" style="width:360.0px;background:#2d5828"></div></div>
+      <span class="mom-val">4,363</span>
+    </div>
+  </div>
+  <div class="mom-delta positive">▲ 145.9%</div>
+</div><div class="mom-row">
+  <div class="mom-label">互動次數（日均）</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:137.5px"></div></div>
+      <span class="mom-val">42</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr positive" style="width:360.0px;background:#2d5828"></div></div>
+      <span class="mom-val">110</span>
+    </div>
+  </div>
+  <div class="mom-delta positive">▲ 161.9%</div>
+</div><div class="mom-row">
+  <div class="mom-label">點擊次數（日均）</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:166.2px"></div></div>
+      <span class="mom-val">36</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr positive" style="width:360.0px;background:#2d5828"></div></div>
+      <span class="mom-val">78</span>
+    </div>
+  </div>
+  <div class="mom-delta positive">▲ 116.7%</div>
+</div><div class="mom-row">
+  <div class="mom-label">點擊率</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:360.0px"></div></div>
+      <span class="mom-val">2.02%</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr negative" style="width:319.0px;background:#a13d35"></div></div>
+      <span class="mom-val">1.79%</span>
+    </div>
+  </div>
+  <div class="mom-delta negative">▼ 0.23pp</div>
+</div><div class="mom-row">
+  <div class="mom-label">名單獲取（日均）</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:148.1px"></div></div>
+      <span class="mom-val">0.55</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr positive" style="width:360.0px;background:#2d5828"></div></div>
+      <span class="mom-val">1.33</span>
+    </div>
+  </div>
+  <div class="mom-delta positive">▲ 143.1%</div>
+</div><div class="mom-row">
+  <div class="mom-label">名單成本（CPL）</div>
+  <div class="mom-bars">
+    <div class="mom-bar-row">
+      <span class="mom-side">5月</span>
+      <div class="mom-track"><div class="mom-fill prev" style="width:297.9px"></div></div>
+      <span class="mom-val">NT$ 3,507</span>
+    </div>
+    <div class="mom-bar-row">
+      <span class="mom-side">6月</span>
+      <div class="mom-track"><div class="mom-fill curr negative" style="width:360.0px;background:#a13d35"></div></div>
+      <span class="mom-val">NT$ 4,238</span>
+    </div>
+  </div>
+  <div class="mom-delta negative">▲ 20.8%</div>
+</div>
+    </div>
+
+    <h3 class="subhead">本月變化說明</h3>
+    <div class="editable" contenteditable="false"></div>
+  </div>
+</section>
+
+<!-- § 06 -->
+<section class="section" id="s06">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 06</div>
+      <div class="section-en">Audience Performance</div>
+      <h2 class="section-title">受眾組合表現</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">三組受眾在本月觸及量的分佈，與貢獻名單數。</p>
+    </div>
+
+    <h3 class="subhead">受眾觸及分佈</h3>
+    <div class="donut-wrap">
+      <div><svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100.0" cy="100.0" r="82.0" fill="none" stroke="#ece9e1" stroke-width="28"/>
+  <circle cx="100.0" cy="100.0" r="82.0" fill="none"
+    stroke="#b8963e" stroke-width="28"
+    stroke-dasharray="224.84 290.38"
+    stroke-dashoffset="-0.00"
+    transform="rotate(-90 100.0 100.0)"/>
+  <circle cx="100.0" cy="100.0" r="82.0" fill="none"
+    stroke="#2d5828" stroke-width="28"
+    stroke-dasharray="214.25 300.98"
+    stroke-dashoffset="-224.84"
+    transform="rotate(-90 100.0 100.0)"/>
+  <circle cx="100.0" cy="100.0" r="82.0" fill="none"
+    stroke="#8a8e88" stroke-width="28"
+    stroke-dasharray="76.13 439.09"
+    stroke-dashoffset="-439.09"
+    transform="rotate(-90 100.0 100.0)"/>
+</svg></div>
+      <div class="donut-legend">
+        <div class="donut-item">
+          <span class="donut-dot" style="background:#b8963e"></span>
+          <span class="donut-name">精品豪車</span>
+          <span class="donut-stats"><span class="pct">43.6%</span>觸及 34,671　·　名單 23</span>
+        </div>
+        <div class="donut-item">
+          <span class="donut-dot" style="background:#2d5828"></span>
+          <span class="donut-name">高所得族群</span>
+          <span class="donut-stats"><span class="pct">41.6%</span>觸及 33,037　·　名單 14</span>
+        </div>
+        <div class="donut-item">
+          <span class="donut-dot" style="background:#8a8e88"></span>
+          <span class="donut-name">高管</span>
+          <span class="donut-stats"><span class="pct">14.8%</span>觸及 11,740　·　名單 3</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead">受眾配置月度變化</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>受眾組合</th>
+          <th class="num">5月觸及</th>
+          <th class="num">6月觸及</th>
+          <th class="num">5月名單</th>
+          <th class="num">6月名單</th>
+          <th>本月變化</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">精品豪車</td><td class="num">12,276</td><td class="num">34,671</td><td class="num">6</td><td class="num">23</td><td>觸及與名單雙翻倍，本月主力</td></tr>
+        <tr><td class="row-label">高所得族群</td><td class="num">20,143</td><td class="num">33,037</td><td class="num">11</td><td class="num">14</td><td>觸及擴大，名單穩定成長</td></tr>
+        <tr><td class="row-label">高管</td><td class="num">2,418</td><td class="num">11,740</td><td class="num">0</td><td class="num">3</td><td>調整後重新上場，貢獻名單</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead">受眾調整邏輯</h3>
+    <div class="editable" contenteditable="false"></div>
+  </div>
+</section>
+
+<!-- § 07 -->
+<section class="section" id="s07">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 07</div>
+      <div class="section-en">Geographic Performance</div>
+      <h2 class="section-title">投放區域成效</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">本月投放持續採高所得行政區與案場周邊地理圍欄雙軌策略。</p>
+    </div>
+
+    <div class="dual-chart-grid">
+      <div class="dual-chart-col">
+        <h4>觸及人數</h4>
+        <div class="hbar-chart"><div class="hbar-row">
+  <div class="hbar-label">大安信義內湖南港</div>
+  <div class="hbar-track" style="width:400px"><div class="hbar-fill" style="width:400.0px;background:#2d5828"></div></div>
+  <div class="hbar-value">63,029</div>
+</div><div class="hbar-row">
+  <div class="hbar-label">吉美 +5KM 圍欄</div>
+  <div class="hbar-track" style="width:400px"><div class="hbar-fill" style="width:104.2px;background:#4a7a3e"></div></div>
+  <div class="hbar-value">16,419</div>
+</div></div>
+      </div>
+      <div class="dual-chart-col">
+        <h4>名單獲取</h4>
+        <div class="hbar-chart"><div class="hbar-row">
+  <div class="hbar-label">大安信義內湖南港</div>
+  <div class="hbar-track" style="width:400px"><div class="hbar-fill" style="width:400.0px;background:#b8963e"></div></div>
+  <div class="hbar-value">29 張</div>
+</div><div class="hbar-row">
+  <div class="hbar-label">吉美 +5KM 圍欄</div>
+  <div class="hbar-track" style="width:400px"><div class="hbar-fill" style="width:151.7px;background:#d4c090"></div></div>
+  <div class="hbar-value">11 張</div>
+</div></div>
+      </div>
+    </div>
+
+    <h3 class="subhead">5 月區域數據（參考）</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>區域</th>
+          <th class="num">觸及人數</th>
+          <th class="num">點擊次數</th>
+          <th class="num">名單</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">大安信義內湖南港</td><td class="num">30,129</td><td class="num">967</td><td class="num">14</td></tr>
+        <tr><td class="row-label">吉美 +5KM 圍欄</td><td class="num">4,708</td><td class="num">141</td><td class="num">3</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead">區域策略</h3>
+    <div class="editable" contenteditable="false"></div>
+  </div>
+</section>
+
+<!-- § 08 -->
+<section class="section" id="s08">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 08</div>
+      <div class="section-en">Creative Performance</div>
+      <h2 class="section-title">素材表現分析</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">本月共投放 37 支潛在名單型廣告，依素材類型呈現點擊率差異，並列出表現前段班的廣告。</p>
+    </div>
+
+    <h3 class="subhead">點擊率（CTR）依素材類型比較</h3>
+    <div class="hbar-chart"><div class="hbar-row">
+  <div class="hbar-label">單圖</div>
+  <div class="hbar-track" style="width:420px"><div class="hbar-fill" style="width:146.7px;background:#2d5828"></div></div>
+  <div class="hbar-value">1.61%　·　25 支廣告　·　名單 33</div>
+</div><div class="hbar-row">
+  <div class="hbar-label">影片</div>
+  <div class="hbar-track" style="width:420px"><div class="hbar-fill" style="width:420.0px;background:#b8963e"></div></div>
+  <div class="hbar-value">4.61%　·　8 支廣告　·　名單 7</div>
+</div><div class="hbar-row">
+  <div class="hbar-label">多圖</div>
+  <div class="hbar-track" style="width:420px"><div class="hbar-fill" style="width:0.0px;background:#8a8e88"></div></div>
+  <div class="hbar-value">0.00%　·　4 支廣告　·　名單 0</div>
+</div></div>
+
+    <table class="data-table" style="margin-top:24px">
+      <thead>
+        <tr>
+          <th>素材類型</th>
+          <th class="num">5月 CTR</th>
+          <th class="num">6月 CTR</th>
+          <th class="num">5月名單</th>
+          <th class="num">6月名單</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">單圖</td><td class="num">1.83%</td><td class="num">1.61%</td><td class="num">14</td><td class="num">33</td></tr>
+        <tr><td class="row-label">影片</td><td class="num">4.91%</td><td class="num">4.61%</td><td class="num">3</td><td class="num">7</td></tr>
+        <tr><td class="row-label">多圖</td><td class="num">7.69%</td><td class="num">0.00%</td><td class="num">0</td><td class="num">0</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead">Top 5 名單貢獻廣告</h3>
+    <div class="top-ads">
+      <div class="top-ad-row">
+        <div class="rank">01</div><div class="image-slot"></div>
+        <div><div class="ad-name">20251030 圖片</div><div class="ad-meta">精品豪車 · 大安信義內湖南港 · 單圖</div></div>
+        <div class="ad-stats">名單 <strong>13</strong>　·　觸及 25,570　·　點擊 695</div>
+      </div>
+      <div class="top-ad-row">
+        <div class="rank">02</div><div class="image-slot"></div>
+        <div><div class="ad-name">20260112 圖片</div><div class="ad-meta">高所得族群 · 吉美+5KM · 單圖</div></div>
+        <div class="ad-stats">名單 <strong>5</strong>　·　觸及 3,477　·　點擊 108</div>
+      </div>
+      <div class="top-ad-row">
+        <div class="rank">03</div><div class="image-slot"></div>
+        <div><div class="ad-name">20260112 圖片</div><div class="ad-meta">精品豪車 · 大安信義內湖南港 · 單圖</div></div>
+        <div class="ad-stats">名單 <strong>3</strong>　·　觸及 3,225　·　點擊 99</div>
+      </div>
+      <div class="top-ad-row">
+        <div class="rank">04</div><div class="image-slot"></div>
+        <div><div class="ad-name">20251106 圖片</div><div class="ad-meta">精品豪車 · 大安信義內湖南港 · 單圖</div></div>
+        <div class="ad-stats">名單 <strong>3</strong>　·　觸及 2,545　·　點擊 42</div>
+      </div>
+      <div class="top-ad-row">
+        <div class="rank">05</div><div class="image-slot"></div>
+        <div><div class="ad-name">20251110 影片</div><div class="ad-meta">高管 · 大安信義內湖南港 · 影片</div></div>
+        <div class="ad-stats">名單 <strong>3</strong>　·　觸及 1,286　·　點擊 121</div>
+      </div>
+    </div>
+
+    <h3 class="subhead">Top 3 高互動廣告</h3>
+    <div class="top-ads">
+      <div class="top-ad-row">
+        <div class="rank">01</div><div class="image-slot"></div>
+        <div><div class="ad-name">20251110 影片</div><div class="ad-meta">高管 · 大安信義內湖南港 · 影片</div></div>
+        <div class="ad-stats">互動 <strong>633</strong>　·　觸及 1,286</div>
+      </div>
+      <div class="top-ad-row">
+        <div class="rank">02</div><div class="image-slot"></div>
+        <div><div class="ad-name">20251030 圖片</div><div class="ad-meta">精品豪車 · 大安信義內湖南港 · 單圖</div></div>
+        <div class="ad-stats">互動 <strong>519</strong>　·　觸及 25,570</div>
+      </div>
+      <div class="top-ad-row">
+        <div class="rank">03</div><div class="image-slot"></div>
+        <div><div class="ad-name">20251110 影片</div><div class="ad-meta">高所得族群 · 吉美+5KM · 影片</div></div>
+        <div class="ad-stats">互動 <strong>372</strong>　·　觸及 990</div>
+      </div>
+    </div>
+
+    <h3 class="subhead">素材結構觀察</h3>
+    <div class="editable" contenteditable="false"></div>
+  </div>
+</section>
+
+<!-- § 10 -->
+<section class="section" id="s10">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 10</div>
+      <div class="section-en">Next Period Recommendations</div>
+      <h2 class="section-title">下月優化建議</h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <h3 class="subhead">01　預算分配</h3>
+    <div class="editable" contenteditable="false"></div>
+
+    <h3 class="subhead">02　受眾配置</h3>
+    <div class="editable" contenteditable="false"></div>
+
+    <h3 class="subhead">03　素材策略</h3>
+    <div class="editable" contenteditable="false"></div>
+
+    <h3 class="subhead">04　區域配置</h3>
+    <div class="editable" contenteditable="false"></div>
+
+    <h3 class="subhead">05　配合事項</h3>
+    <div class="editable" contenteditable="false"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="ft-mark">FOREST PARK</div>
+    <div class="ft-name">吉美富徠　·　Monthly Performance Report</div>
+    <div class="ft-legal">編製：筑今數位設計　·　報告期間：2026 / 06 / 01 — 06 / 30</div>
+  </div>
+</footer>
+
+<script>
+let editMode = false;
+function toggleEdit() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  document.querySelectorAll('.editable, .editable-inline').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+  const btn = document.getElementById('editBtn');
+  btn.textContent = editMode ? '完成編輯' : '開始編輯';
+  btn.classList.toggle('primary', editMode);
+}
+function downloadHTML() {
+  const doctype = '<!DOCTYPE html>\n';
+  const html = doctype + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  a.href = url;
+  a.download = 'forest-park-202606_' + ts + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function setupImageSlot(slot) {
+  slot.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        slot.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = reader.result;
+        slot.appendChild(img);
+        slot.classList.add('has-image');
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  });
+  slot.addEventListener('dragover', (e) => { e.preventDefault(); slot.classList.add('dragover'); });
+  slot.addEventListener('dragleave', () => { slot.classList.remove('dragover'); });
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      slot.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = reader.result;
+      slot.appendChild(img);
+      slot.classList.add('has-image');
+    };
+    reader.readAsDataURL(file);
+  });
+}
+document.querySelectorAll('.image-slot').forEach(setupImageSlot);
+</script>
+
+</body>
+</html>
