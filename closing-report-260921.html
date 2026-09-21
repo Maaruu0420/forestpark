@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forest Park 吉美富徠｜4-9月結案報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   TOKENS
+   ============================================ */
+:root {
+  --ink:           #1a1e1a;
+  --ink-medium:    #3a3d3a;
+  --ink-light:     #6a6d6a;
+
+  --paper:         #ffffff;
+  --paper-soft:    #faf9f5;
+  --paper-warm:    #f5f2eb;
+
+  --hairline:      #d6d3cd;
+  --hairline-soft: #ece9e1;
+
+  --forest:        #2d5828;
+  --forest-light:  #4a7a3e;
+  --forest-soft:   rgba(45, 88, 40, 0.06);
+  --gold:          #b8963e;
+  --gold-light:    #d4c090;
+  --gold-soft:     #efe5cd;
+
+  --edit-border:   rgba(45, 88, 40, 0.22);
+  --edit-active:   #2d5828;
+
+  --positive:      #2d5828;
+  --negative:      #a13d35;
+
+  --serif:  'Noto Serif TC', 'Songti TC', serif;
+  --sans:   'Noto Sans TC', -apple-system, sans-serif;
+  --en:     'Cormorant Garamond', serif;
+  --mono:   'JetBrains Mono', 'SF Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.85;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 56px; }
+
+.section { padding: 88px 0; border-bottom: 1px solid var(--hairline-soft); }
+.section:last-of-type { border-bottom: none; }
+
+.section-header { margin-bottom: 40px; }
+
+.section-num {
+  font-family: var(--en);
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.section-en {
+  font-family: var(--en);
+  font-size: 14px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--ink);
+  margin-top: 16px;
+  line-height: 1.3;
+}
+
+.section-lede {
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.9;
+  margin-top: 20px;
+  max-width: 760px;
+}
+
+.gold-line { width: 48px; height: 1px; background: var(--gold); margin: 24px 0; }
+
+.subhead {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin: 40px 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* EDITABLE */
+.editable {
+  display: block;
+  border: 1px dashed var(--edit-border);
+  border-radius: 2px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  min-height: 56px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink);
+  font-weight: 500;
+}
+.editable:hover { border-color: var(--forest); background: var(--forest-soft); }
+.editable:focus { border-color: var(--edit-active); border-style: solid; background: #fff; }
+
+.editable-inline {
+  display: inline-block;
+  border-bottom: 1px dashed var(--edit-border);
+  padding: 0 4px;
+  outline: none;
+  min-width: 100px;
+  transition: border-color 0.2s;
+}
+.editable-inline:hover, .editable-inline:focus { border-color: var(--edit-active); }
+
+/* IMAGE SLOT */
+.image-slot {
+  width: 80px; height: 80px;
+  border: 1px dashed var(--edit-border);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; flex-shrink: 0;
+  background: var(--paper-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+  overflow: hidden;
+}
+.image-slot::before { content: '＋'; font-size: 24px; color: var(--ink-light); font-weight: 300; transition: color 0.2s; }
+.image-slot.has-image::before { display: none; }
+.image-slot:hover { border-color: var(--forest); background: var(--forest-soft); }
+.image-slot:hover::before { color: var(--forest); }
+.image-slot img { width: 100%; height: 100%; object-fit: cover; }
+.image-slot.dragover { border-color: var(--forest); border-style: solid; background: var(--forest-soft); }
+
+/* TOOLBAR */
+.toolbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hairline);
+  padding: 14px 0;
+}
+.toolbar-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.toolbar-brand {
+  font-family: var(--en); font-size: 14px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--forest); font-weight: 600;
+}
+.toolbar-brand .tb-sep { color: var(--gold); margin: 0 10px; }
+.toolbar-brand .tb-zh {
+  font-family: var(--serif); font-size: 15px; letter-spacing: 3px;
+  color: var(--ink); font-weight: 600;
+}
+.toolbar-actions { display: flex; gap: 8px; }
+.tb-btn {
+  font-family: var(--sans); font-size: 14px; letter-spacing: 2px; font-weight: 500;
+  padding: 9px 18px; border: 1px solid var(--hairline);
+  background: var(--paper); color: var(--ink);
+  cursor: pointer; transition: all 0.2s; border-radius: 2px;
+}
+.tb-btn:hover { border-color: var(--forest); color: var(--forest); }
+.tb-btn.primary { background: var(--forest); border-color: var(--forest); color: #fff; }
+.tb-btn.primary:hover { background: var(--forest-light); border-color: var(--forest-light); color: #fff; }
+
+.edit-notice {
+  display: none;
+  background: var(--gold-soft);
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 12px 0; text-align: center;
+  font-size: 14px; color: var(--ink); font-weight: 500; letter-spacing: 1.5px;
+}
+body.edit-mode .edit-notice { display: block; }
+
+/* COVER */
+.cover { padding: 128px 0 200px; background: var(--paper-soft); border-bottom: 1px solid var(--hairline); }
+.cover-mark { font-family: var(--en); font-size: 14px; letter-spacing: 6px; text-transform: uppercase; color: var(--forest); font-weight: 600; }
+.cover-mark .cm-zh { font-family: var(--serif); font-size: 15px; letter-spacing: 4px; color: var(--ink); margin-left: 12px; font-weight: 600; }
+.cover-title { font-family: var(--serif); font-size: 56px; font-weight: 600; letter-spacing: 12px; color: var(--ink); margin: 32px 0 8px; line-height: 1.2; }
+.cover-subtitle { font-family: var(--en); font-style: italic; font-size: 19px; letter-spacing: 4px; color: var(--ink-medium); margin-bottom: 32px; font-weight: 500; }
+.cover-line { width: 64px; height: 1px; background: var(--gold); margin: 32px 0; }
+.cover-period { font-family: var(--mono); font-size: 20px; letter-spacing: 3px; color: var(--ink); margin-bottom: 56px; font-weight: 500; }
+.cover-meta { max-width: 540px; }
+.meta-row { display: grid; grid-template-columns: 130px 1fr; padding: 14px 0; border-bottom: 1px solid var(--hairline-soft); font-size: 15px; align-items: center; }
+.meta-label { font-family: var(--en); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.meta-value { font-family: var(--serif); font-size: 16px; color: var(--ink); letter-spacing: 1.5px; font-weight: 500; }
+
+/* EXEC SUMMARY / HERO KPI */
+.exec-narrative {
+  background: var(--paper-soft); padding: 28px 32px; border-left: 3px solid var(--gold);
+  font-family: var(--serif); font-size: 16px; font-weight: 500; line-height: 2; letter-spacing: 1px;
+  color: var(--ink); margin-bottom: 40px;
+}
+.exec-narrative p + p { margin-top: 14px; }
+
+.hero-kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+.hero-kpi-card { background: var(--paper); padding: 28px 22px; }
+.hk-label { font-family: var(--en); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.hk-label-zh { font-size: 14px; letter-spacing: 1.5px; color: var(--ink); margin-bottom: 18px; margin-top: 2px; font-weight: 500; }
+.hk-value { font-family: var(--serif); font-size: 38px; font-weight: 600; color: var(--ink); letter-spacing: 1px; line-height: 1.2; }
+.hk-unit { font-family: var(--sans); font-size: 14px; color: var(--ink-medium); margin-left: 4px; font-weight: 500; }
+.hk-delta { margin-top: 12px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.5px; color: var(--ink); font-weight: 500; }
+.hk-delta.up { color: var(--positive); }
+.hk-delta.down { color: var(--negative); }
+
+/* DATA TABLE */
+.data-table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0; }
+.data-table th {
+  font-family: var(--sans); font-weight: 600; font-size: 14px; letter-spacing: 1px; color: var(--ink);
+  text-align: left; padding: 14px 16px; border-bottom: 2px solid var(--ink); background: var(--paper-soft);
+}
+.data-table td { padding: 14px 16px; border-bottom: 1px solid var(--hairline-soft); color: var(--ink); font-weight: 500; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .num, .data-table th.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; font-weight: 500; }
+.data-table tr.total td { font-weight: 600; border-top: 1px solid var(--ink); border-bottom: none; background: var(--paper-soft); }
+.data-table .row-label { font-family: var(--serif); letter-spacing: 1px; font-weight: 600; }
+.table-note { font-size: 13px; color: var(--ink-light); font-weight: 500; margin-top: 12px; line-height: 1.8; }
+
+/* KPI GRID */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+.kpi-cell { background: var(--paper); padding: 22px 20px; }
+.kpi-cell .label { font-family: var(--en); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.kpi-cell .label-zh { font-size: 14px; letter-spacing: 1px; color: var(--ink); margin-bottom: 14px; margin-top: 2px; font-weight: 500; }
+.kpi-cell .value { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--ink); letter-spacing: 0.5px; line-height: 1.2; }
+.kpi-cell .unit { font-family: var(--sans); font-size: 13px; color: var(--ink-medium); margin-left: 4px; font-weight: 500; }
+.kpi-cell .delta-row { margin-top: 12px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.5px; color: var(--ink-medium); }
+
+/* HBAR CHART */
+.hbar-chart { margin: 16px 0; }
+.hbar-row { display: grid; grid-template-columns: 100px 1fr 100px; align-items: center; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--hairline-soft); }
+.hbar-row:last-child { border-bottom: none; }
+.hbar-label { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: 1px; }
+.hbar-track { height: 20px; background: var(--hairline-soft); border-radius: 1px; overflow: hidden; }
+.hbar-fill { height: 100%; background: var(--forest); transition: width 0.4s ease; }
+.hbar-value { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; text-align: right; }
+
+/* DONUT */
+.donut-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: center; margin: 16px 0 32px; }
+.donut-legend { display: flex; flex-direction: column; gap: 16px; }
+.donut-item { display: grid; grid-template-columns: 16px 1fr auto; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--hairline-soft); }
+.donut-item:last-child { border-bottom: none; }
+.donut-dot { width: 14px; height: 14px; border-radius: 2px; }
+.donut-name { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: 1px; }
+.donut-stats { font-family: var(--mono); font-size: 14px; color: var(--ink); font-weight: 500; text-align: right; }
+.donut-stats .pct { font-size: 16px; font-weight: 600; margin-right: 8px; }
+
+/* ISSUE / OBSERVATION BLOCK */
+.issue-block { border: 1px solid var(--hairline); padding: 28px 32px; margin-top: 24px; border-left: 3px solid var(--gold); }
+.issue-block .iss-num { font-family: var(--en); font-style: italic; font-size: 18px; color: var(--gold); letter-spacing: 2px; font-weight: 600; }
+.issue-block .iss-title { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: 2px; margin: 4px 0 14px; }
+.issue-block .iss-fact { font-size: 15px; color: var(--ink); font-weight: 500; line-height: 1.9; letter-spacing: 0.5px; margin-bottom: 16px; }
+
+/* FUNNEL (new for this report) */
+.funnel { margin: 16px 0; }
+.funnel-step { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--hairline-soft); }
+.funnel-step:last-child { border-bottom: none; }
+.funnel-num { font-family: var(--en); font-size: 24px; font-style: italic; color: var(--gold); font-weight: 600; }
+.funnel-label { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); letter-spacing: 1px; margin-bottom: 4px; }
+.funnel-desc { font-size: 13px; color: var(--ink-light); font-weight: 500; letter-spacing: 0.5px; }
+.funnel-value { font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--ink); text-align: right; }
+.funnel-unit { font-family: var(--sans); font-size: 13px; color: var(--ink-medium); font-weight: 500; margin-left: 2px; }
+.funnel-connector { padding: 6px 0 6px 48px; font-family: var(--mono); font-size: 13px; color: var(--forest); font-weight: 600; letter-spacing: 0.5px; }
+
+/* THEME CARD (content axis recap) */
+.theme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 16px 0; }
+.theme-card { background: var(--paper-soft); padding: 28px 30px; border-left: 3px solid var(--gold); }
+.theme-period { font-family: var(--en); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--forest); font-weight: 600; }
+.theme-axis { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: 2px; margin: 10px 0 14px; }
+.theme-quote { font-family: var(--serif); font-size: 16px; font-style: italic; color: var(--ink-medium); line-height: 1.9; letter-spacing: 0.5px; }
+
+/* FOOTER */
+.footer { padding: 56px 0 40px; background: var(--ink); color: rgba(232, 228, 220, 0.85); text-align: center; }
+.footer .ft-mark { font-family: var(--en); font-size: 14px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 600; }
+.footer .ft-name { font-family: var(--serif); font-size: 17px; letter-spacing: 4px; color: #fff; margin-bottom: 20px; font-weight: 600; }
+.footer .ft-legal { font-size: 13px; letter-spacing: 1px; line-height: 2; font-weight: 500; }
+
+/* PRINT */
+@media print {
+  .toolbar, .edit-notice { display: none !important; }
+  body { font-size: 13px; }
+  .section { padding: 40px 0; page-break-inside: avoid; }
+  .cover { padding: 56px 0 40px; page-break-after: always; }
+  .editable { border: 1px solid var(--hairline) !important; background: #fff !important; }
+  .image-slot { break-inside: avoid; }
+  .data-table, .kpi-grid, .hero-kpi, .donut-wrap, .hbar-row, .funnel-step { page-break-inside: avoid; }
+  .container { max-width: none; padding: 0 24px; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container, .toolbar-inner { padding: 0 24px; }
+  .hero-kpi, .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .cover-title { font-size: 36px; letter-spacing: 6px; }
+  .section-title { font-size: 24px; }
+  .donut-wrap { grid-template-columns: 1fr; gap: 24px; justify-items: center; }
+  .hbar-row { grid-template-columns: 1fr; gap: 6px; }
+  .theme-grid { grid-template-columns: 1fr; gap: 20px; }
+  .funnel-step { grid-template-columns: 1fr; gap: 8px; }
+  .funnel-value { text-align: left; }
+}
+</style>
+</head>
+<body class="">
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="toolbar-brand">
+      Forest Park <span class="tb-sep">·</span> <span class="tb-zh">吉美富徠 結案報告</span>
+    </div>
+    <div class="toolbar-actions">
+      <button class="tb-btn" id="editBtn" onclick="toggleEdit()">開始編輯</button>
+      <button class="tb-btn" onclick="downloadHTML()">下載修改版</button>
+      <button class="tb-btn primary" onclick="window.print()">列印 / PDF</button>
+    </div>
+  </div>
+</div>
+
+<div class="edit-notice">編輯模式已開啟　·　點擊虛線框可直接輸入文字　·　點擊圖位可上傳代表圖</div>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="container">
+    <div class="cover-mark">FOREST PARK <span class="cm-zh">吉美富徠</span></div>
+    <h1 class="cover-title">結案報告</h1>
+    <div class="cover-subtitle">Apr – Sep 2026 Campaign Closing Report</div>
+    <div class="cover-line"></div>
+    <div class="cover-period">2026 / 04 / 01　—　2026 / 09 / 30</div>
+
+    <div class="cover-meta">
+      <div class="meta-row">
+        <div class="meta-label">Scope</div>
+        <div class="meta-value">社群發文　．　廣告投放　．　官網製作</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Prepared</div>
+        <div class="meta-value">筑今數位設計</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 01 EXECUTIVE SUMMARY -->
+<section class="section" id="s01">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 01</div>
+      <div class="section-en">Executive Summary</div>
+      <h2 class="section-title">總覽摘要</h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="exec-narrative editable" contenteditable="false">
+      <p>本報告涵蓋 2026 年 4 月至 9 月，工作範圍包含社群發文、Meta／Google 廣告投放，以及官網（Landing Page）製作與維運。官網於 7/14 正式上線，故廣告投放期間長於官網流量統計期間。</p>
+      <p>期間內廣告總投入 NT$489,460（4-8月，9月投放中），累計獲取廣告名單 134 組。官網上線後累計 7,292 次工作階段，完成預約表單 12 組。社群兩季共發布 12 篇貼文，粉絲淨增 10 人，內容互動 447 次。</p>
+    </div>
+
+    <div class="hero-kpi">
+      <div class="hero-kpi-card">
+        <div class="hk-label">Ad Spend</div>
+        <div class="hk-label-zh">廣告總投入</div>
+        <div class="hk-value">489,460<span class="hk-unit">NTD</span></div>
+        <div class="hk-delta">4-8月累計．9月投放中</div>
+      </div>
+      <div class="hero-kpi-card">
+        <div class="hk-label">Leads</div>
+        <div class="hk-label-zh">廣告名單總數</div>
+        <div class="hk-value">134</div>
+        <div class="hk-delta">平均 CPL　NT$3,653</div>
+      </div>
+      <div class="hero-kpi-card">
+        <div class="hk-label">Site Reservations</div>
+        <div class="hk-label-zh">官網預約表單</div>
+        <div class="hk-value">12</div>
+        <div class="hk-delta">7/14上線起．完成率46.2%</div>
+      </div>
+      <div class="hero-kpi-card">
+        <div class="hk-label">Engagement</div>
+        <div class="hk-label-zh">社群互動總數</div>
+        <div class="hk-value">447</div>
+        <div class="hk-delta">粉絲淨增10人．點擊3,244次</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 02 ADVERTISING -->
+<section class="section" id="s02">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 02</div>
+      <div class="section-en">Advertising Performance</div>
+      <h2 class="section-title">廣告成效</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">Meta 廣告自 4/11 開始投放，Google 廣告於 8 月起正式啟動。以下為逐月花費、名單與觸及數據。</p>
+    </div>
+
+    <h3 class="subhead">各月廣告花費（Meta + Google 合計）</h3>
+    <div class="hbar-chart">
+      <div class="hbar-row">
+        <div class="hbar-label">4月</div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:38.0%;background:#4a7a3e"></div></div>
+        <div class="hbar-value">71,874</div>
+      </div>
+      <div class="hbar-row">
+        <div class="hbar-label">5月</div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:34.3%;background:#4a7a3e"></div></div>
+        <div class="hbar-value">59,622</div>
+      </div>
+      <div class="hbar-row">
+        <div class="hbar-label">6月</div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#2d5828"></div></div>
+        <div class="hbar-value">173,772</div>
+      </div>
+      <div class="hbar-row">
+        <div class="hbar-label">7月</div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:35.5%;background:#4a7a3e"></div></div>
+        <div class="hbar-value">61,755</div>
+      </div>
+      <div class="hbar-row">
+        <div class="hbar-label">8月</div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:70.4%;background:#b8963e"></div></div>
+        <div class="hbar-value">122,437</div>
+      </div>
+    </div>
+    <p class="table-note">6月投放金額較高，主因當月將 Meta 4-5月剩餘預算併入投放，非單月新增預算暴增。8月起 Google 廣告正式加入投放組合（深金色）。</p>
+
+    <h3 class="subhead">逐月成效總表</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>期間</th>
+          <th>平台</th>
+          <th class="num">花費</th>
+          <th class="num">名單</th>
+          <th class="num">CPL</th>
+          <th class="num">觸及人數</th>
+          <th class="num">曝光次數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">2026/04（4/11起）</td><td>Meta</td><td class="num">71,874</td><td class="num">26</td><td class="num">2,764</td><td class="num">17,898</td><td class="num">59,906</td></tr>
+        <tr><td class="row-label">2026/04</td><td>Google</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="row-label">2026/05</td><td>Meta</td><td class="num">59,622</td><td class="num">17</td><td class="num">3,507</td><td class="num">33,596</td><td class="num">70,280</td></tr>
+        <tr><td class="row-label">2026/05</td><td>Google</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="row-label">2026/06</td><td>Meta＋Google 合併*</td><td class="num">173,772</td><td class="num">41</td><td class="num">4,238</td><td class="num">128,025</td><td class="num">277,533</td></tr>
+        <tr><td class="row-label">2026/07</td><td>Meta</td><td class="num">61,755</td><td class="num">19</td><td class="num">3,250</td><td class="num">18,657</td><td class="num">50,546</td></tr>
+        <tr><td class="row-label">2026/07</td><td>Google（未執行）</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="row-label">2026/08</td><td>Meta</td><td class="num">62,833</td><td class="num">26</td><td class="num">2,417</td><td class="num">20,071</td><td class="num">46,294</td></tr>
+        <tr><td class="row-label">2026/08</td><td>Google</td><td class="num">59,604</td><td class="num">5</td><td class="num">11,921</td><td class="num">—</td><td class="num">339,925</td></tr>
+        <tr><td class="row-label">2026/09</td><td>投放中</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr class="total"><td class="row-label">4-8月合計</td><td>—</td><td class="num">489,460</td><td class="num">134</td><td class="num">3,653</td><td class="num">218,247</td><td class="num">844,484</td></tr>
+      </tbody>
+    </table>
+    <p class="table-note">＊6月報表未拆分平台，以 Meta＋Google 合併數字呈現。8月 Google 觸及人數未提供，故合計欄未納入。9月數據於投放期間中，待月底更新後補入。</p>
+
+    <h3 class="subhead">成效解讀</h3>
+    <div class="editable" contenteditable="false">CPL 於 5-6月上升，反映受眾持續精準化收斂；8月 Meta CPL 回落至全期最低（NT$2,417）。Google 廣告 8月啟動後首月 CPL 偏高（NT$11,921），屬新管道測試期常見現象。</div>
+  </div>
+</section>
+
+<!-- § 03 WEBSITE -->
+<section class="section" id="s03">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 03</div>
+      <div class="section-en">Website Performance</div>
+      <h2 class="section-title">官網成效</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">官網 forestpark.jimei.com.tw 於 2026/7/14 正式上線，以下數據涵蓋全期間（4/1-9/16），實際流量集中於上線後。</p>
+    </div>
+
+    <h3 class="subhead">流量來源</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>管道</th>
+          <th class="num">工作階段</th>
+          <th class="num">佔比</th>
+          <th class="num">已參與工作階段</th>
+          <th class="num">參與度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">Paid Search（廣告）</td><td class="num">6,622</td><td class="num">90.81%</td><td class="num">1,591</td><td class="num">24.03%</td></tr>
+        <tr><td class="row-label">Direct（直接輸入）</td><td class="num">404</td><td class="num">5.54%</td><td class="num">48</td><td class="num">11.88%</td></tr>
+        <tr><td class="row-label">Cross-network</td><td class="num">215</td><td class="num">2.95%</td><td class="num">74</td><td class="num">34.42%</td></tr>
+        <tr><td class="row-label">Organic Search（自然搜尋）</td><td class="num">39</td><td class="num">0.53%</td><td class="num">24</td><td class="num">61.54%</td></tr>
+        <tr><td class="row-label">Referral（推薦連結）</td><td class="num">15</td><td class="num">0.21%</td><td class="num">8</td><td class="num">53.33%</td></tr>
+        <tr><td class="row-label">Organic Social（社群自然）</td><td class="num">7</td><td class="num">0.10%</td><td class="num">5</td><td class="num">71.43%</td></tr>
+        <tr><td class="row-label">Unassigned／其他</td><td class="num">33</td><td class="num">0.45%</td><td class="num">1</td><td class="num">3.03%</td></tr>
+        <tr class="total"><td class="row-label">合計</td><td class="num">7,292</td><td class="num">100%</td><td class="num">1,751</td><td class="num">24.02%</td></tr>
+      </tbody>
+    </table>
+    <p class="table-note">超過九成流量來自付費搜尋廣告，官網目前定位為廣告承接頁，自然搜尋佔比極低屬預期內（部落格內容尚未上線）。</p>
+
+    <h3 class="subhead">裝置比例</h3>
+    <div class="donut-wrap">
+      <div><svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100.0" cy="100.0" r="82.0" fill="none" stroke="#ece9e1" stroke-width="28"></circle>
+        <circle cx="100.0" cy="100.0" r="82.0" fill="none" stroke="#2d5828" stroke-width="28" stroke-dasharray="464.25 50.97" stroke-dashoffset="-0.00" transform="rotate(-90 100.0 100.0)"></circle>
+        <circle cx="100.0" cy="100.0" r="82.0" fill="none" stroke="#b8963e" stroke-width="28" stroke-dasharray="38.39 476.84" stroke-dashoffset="-464.25" transform="rotate(-90 100.0 100.0)"></circle>
+        <circle cx="100.0" cy="100.0" r="82.0" fill="none" stroke="#8a8e88" stroke-width="28" stroke-dasharray="12.59 502.64" stroke-dashoffset="-502.64" transform="rotate(-90 100.0 100.0)"></circle>
+      </svg></div>
+      <div class="donut-legend">
+        <div class="donut-item">
+          <span class="donut-dot" style="background:#2d5828"></span>
+          <span class="donut-name">行動裝置</span>
+          <span class="donut-stats"><span class="pct">90.1%</span>5,902 位使用者</span>
+        </div>
+        <div class="donut-item">
+          <span class="donut-dot" style="background:#b8963e"></span>
+          <span class="donut-name">桌上型電腦</span>
+          <span class="donut-stats"><span class="pct">7.5%</span>488 位使用者</span>
+        </div>
+        <div class="donut-item">
+          <span class="donut-dot" style="background:#8a8e88"></span>
+          <span class="donut-name">平板</span>
+          <span class="donut-stats"><span class="pct">2.4%</span>160 位使用者</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead">預約表單轉換</h3>
+    <div class="kpi-grid">
+      <div class="kpi-cell">
+        <div class="label">Page Views</div>
+        <div class="label-zh">總瀏覽數</div>
+        <div class="value">8,088</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Form Started</div>
+        <div class="label-zh">開始填寫表單</div>
+        <div class="value">26</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Form Submitted</div>
+        <div class="label-zh">成功送出表單</div>
+        <div class="value">12</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Completion Rate</div>
+        <div class="label-zh">表單完成率</div>
+        <div class="value">46.2<span class="unit">%</span></div>
+      </div>
+    </div>
+
+    <h3 class="subhead">官網成效說明</h3>
+    <div class="editable" contenteditable="false"><p>官網流量以廣告承接為主（90.81% 來自付費搜尋），行動裝置佔 90.1%，頁面體驗與流量結構相符。整體 7,292 次工作階段中，實際完成預約表單 12 筆，轉換率 0.16%；其中開始填寫表單的 26 人裡有 12 人送出，完成率 46.2%，代表真正接觸到表單的人，送出意願不低。目前累計 12 筆表單，數字仍會隨投放期間拉長持續增加。</p></div>
+  </div>
+</section>
+
+<!-- § 04 SOCIAL -->
+<section class="section" id="s04">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 04</div>
+      <div class="section-en">Social Media Performance</div>
+      <h2 class="section-title">社群經營成效</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">4-9月依既定節奏每兩週發布一則貼文，共兩季 12 篇，分別以不同敘事主軸推進。</p>
+    </div>
+
+    <div class="theme-grid">
+      <div class="theme-card">
+        <div class="theme-period">Apr – Jun 2026</div>
+        <div class="theme-axis">層峰見證．實境奢華</div>
+        <div class="theme-quote">「以建築的重量，呼應家族的質量。」</div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-period">Jul – Sep 2026</div>
+        <div class="theme-axis">大器之姿．日常之質</div>
+        <div class="theme-quote">「歸來，靜成日常的儀式。」</div>
+      </div>
+    </div>
+
+    <h3 class="subhead">經營數據</h3>
+    <div class="kpi-grid">
+      <div class="kpi-cell">
+        <div class="label">Posts</div>
+        <div class="label-zh">發文篇數</div>
+        <div class="value">12<span class="unit">篇</span></div>
+        <div class="delta-row">每兩週一則</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Followers</div>
+        <div class="label-zh">粉絲淨增</div>
+        <div class="value">+10</div>
+        <div class="delta-row">4/1-9/15累計</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Engagement</div>
+        <div class="label-zh">內容互動總數</div>
+        <div class="value">447</div>
+        <div class="delta-row">按讚／留言／分享</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="label">Link Clicks</div>
+        <div class="label-zh">連結點擊次數</div>
+        <div class="value">3,244</div>
+        <div class="delta-row">4/1-9/15累計</div>
+      </div>
+    </div>
+    <h3 class="subhead">內容策略說明</h3>
+    <div class="editable" contenteditable="false"><p>4-9月社群發文延續兩階段策略：4-6月以「層峰見證．實境奢華」建立地標身分與稀缺基地的權威感；7-9月成屋完工後轉為「大器之姿．日常之質」，聚焦實品屋實境與居住情境，呼應銷售階段從話題塑造進入現場帶看。兩季共12篇貼文如期發布，內容持續強化品牌信任度，作為廣告與官網導流之外的長期品牌資產。</p></div>
+  </div>
+</section>
+
+<!-- § 05 FUNNEL SYNTHESIS -->
+<section class="section" id="s05">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 05</div>
+      <div class="section-en">Full-Funnel Synthesis</div>
+      <h2 class="section-title">整體成效串接</h2>
+      <div class="gold-line"></div>
+      <p class="section-lede">將廣告曝光到官網轉換串成一條路徑。以下數值分別來自廣告平台後台與 GA4，量測系統不同，僅供參考量級，非同一嚴謹漏斗換算。</p>
+    </div>
+
+    <div class="funnel">
+      <div class="funnel-step">
+        <div class="funnel-num">01</div>
+        <div>
+          <div class="funnel-label">廣告曝光次數</div>
+          <div class="funnel-desc">Meta + Google，4-8月累計</div>
+        </div>
+        <div class="funnel-value">844,484</div>
+      </div>
+      <div class="funnel-connector">↓　觸及率 25.8%</div>
+      <div class="funnel-step">
+        <div class="funnel-num">02</div>
+        <div>
+          <div class="funnel-label">廣告觸及人數</div>
+          <div class="funnel-desc">Meta + Google，4-8月累計（8月Google觸及未提供）</div>
+        </div>
+        <div class="funnel-value">218,247</div>
+      </div>
+      <div class="funnel-connector">↓　官網於 7/14 上線</div>
+      <div class="funnel-step">
+        <div class="funnel-num">03</div>
+        <div>
+          <div class="funnel-label">官網工作階段</div>
+          <div class="funnel-desc">90.81% 來自付費搜尋廣告</div>
+        </div>
+        <div class="funnel-value">7,292</div>
+      </div>
+      <div class="funnel-connector">↓　轉換率 0.16%　·　表單完成率 46.2%</div>
+      <div class="funnel-step">
+        <div class="funnel-num">04</div>
+        <div>
+          <div class="funnel-label">官網預約表單提交</div>
+          <div class="funnel-desc">7/14-9/16累計</div>
+        </div>
+        <div class="funnel-value">12</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 06 CONSULTANT NOTES -->
+<section class="section" id="s06">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">§ 06</div>
+      <div class="section-en">Summary &amp; Next Steps</div>
+      <h2 class="section-title">總結與後續建議</h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <h3 class="subhead">01　整體成效解讀</h3>
+    <div class="editable" contenteditable="false"></div>
+
+    <h3 class="subhead">02　名單來源與實際成交轉換</h3>
+    <div class="editable" contenteditable="false"></div>
+
+    <h3 class="subhead">03　下一階段建議</h3>
+    <div class="editable" contenteditable="false"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="ft-mark">FOREST PARK</div>
+    <div class="ft-name">吉美富徠　·　6-Month Closing Report</div>
+    <div class="ft-legal">
+      編製：筑今數位設計　·　報告期間：2026 / 04 / 01 — 09 / 30
+    </div>
+  </div>
+</footer>
+
+<script>
+let editMode = false;
+
+function toggleEdit() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  document.querySelectorAll('.editable, .editable-inline').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+  const btn = document.getElementById('editBtn');
+  btn.textContent = editMode ? '完成編輯' : '開始編輯';
+  btn.classList.toggle('primary', editMode);
+}
+
+function downloadHTML() {
+  const doctype = '<!DOCTYPE html>\n';
+  const html = doctype + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  a.href = url;
+  a.download = '吉美富徠_結案報告_' + ts + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* Image slot interactions */
+function setupImageSlot(slot) {
+  slot.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        slot.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = reader.result;
+        slot.appendChild(img);
+        slot.classList.add('has-image');
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  });
+
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    slot.classList.add('dragover');
+  });
+
+  slot.addEventListener('dragleave', () => {
+    slot.classList.remove('dragover');
+  });
+
+  slot.addEventListener('drop', (e) => {
+    e.preventDefault();
+    slot.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      slot.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = reader.result;
+      slot.appendChild(img);
+      slot.classList.add('has-image');
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+document.querySelectorAll('.image-slot').forEach(setupImageSlot);
+</script>
+
+
+
+</body></html>
